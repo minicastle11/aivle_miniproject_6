@@ -67,4 +67,4 @@ function BookReportDetailList({ book, onCreate }) {
   );
 }
 
-export default ReviewForm;
+export default BookReportDetailList;
