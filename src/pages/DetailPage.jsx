@@ -1,6 +1,6 @@
 import BookReportDetailList from '../components/BookReportDetailList'
 
-function DetailPage({bookState, reviewList}){
+function DetailPage({bookState, reviewList, onReviewLike, onReviewEdit, onReviewDelete }){
     
     return(
         <>
@@ -15,7 +15,10 @@ function DetailPage({bookState, reviewList}){
         </div>
             <BookReportDetailList
             review= {reviewList.filter(p => p.bookid === bookState.id )}
-            bookname={bookState.title}
+            bookTitle={bookState.title}
+            onRevieLike={onReviewLike}
+            onReviewEdit={onReviewEdit}
+            onReviewDelete={onReviewDelete}
             />
         </>
 

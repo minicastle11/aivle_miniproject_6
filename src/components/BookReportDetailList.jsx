@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { request } from "./api.js";
+import ReviewItem from './BookReportDetailItem'
 
-function BookReportDetailList({ book, onCreate }) {
+function BookReportDetailList({ book, review,  onCreate, onReviewLike, onReviewEdit, onReviewDelete }) {
   const [nickname, setNickname] = useState("");
   const [content, setContent] = useState("");
 
@@ -45,6 +46,7 @@ function BookReportDetailList({ book, onCreate }) {
   }
 
   return (
+    <div>
     <form className="review-form" onSubmit={handleSubmit}>
       <input
         type="text"
@@ -64,6 +66,17 @@ function BookReportDetailList({ book, onCreate }) {
         리뷰 등록
       </button>
     </form>
+    <ul>
+      {review.map (p =>
+      <ReviewItem
+        review={p}
+        bookTitle={book.title}
+        onLike={onReviewLike}
+        onEdit={onReviewEdit}
+        onDelete={onReviewDelete}/> 
+      )}
+    </ul>
+    </div>
   );
 }
 
