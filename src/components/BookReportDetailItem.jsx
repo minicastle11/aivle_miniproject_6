@@ -1,6 +1,6 @@
 import { formatDate, getLatestDate } from "./utils.js";
 
-function ReviewItem({ review, bookTitle, onLike, onEdit, onDelete }) {
+function BookReportDetailItem({ review, bookTitle, onLike, onEdit, onDelete }) {
   return (
     <article className="review-card no-click">
       <div className="review-main">
