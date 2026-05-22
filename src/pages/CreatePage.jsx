@@ -1,8 +1,18 @@
-function CreatePage() {
+import { useNavigate } from 'react-router-dom';
+import Create from '../components/Create';
+
+function CreatePage({ onCreateBook }) {
+  const navigate = useNavigate();
+
+  const handleCreate = async (newBook) => {
+    const savedBook = await onCreateBook(newBook);
+    navigate(`/detail/${savedBook.id}`);
+  };
+
   return (
-    <div>
-      <h1>Create Page</h1>
-      <p>이미지 생성 페이지 입니다.</p>
+    <div className="app">
+      <h2 style={{ textAlign: 'center', margin: '40px 0' }}>새 도서 등록</h2>
+      <Create onCreate={handleCreate} />
     </div>
   );
 }

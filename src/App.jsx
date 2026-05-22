@@ -25,29 +25,30 @@ function App() {
     loadData();
   }, []);
 
-  const handleReviewLike = async(id) =>{
+  const handleReviewLike = async => (id){
     const review = reviews.find( r => r.id ===id);
 
-    const res = await fetch ("`http://localhost:3000/reviews/${id}`",{
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ likes: review.likes + 1 }),
+    const res = await fetch(`http://localhost:3001/reviews/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ likes: review.likes + 1 }),
     });
     const updated = await res.json();
-    setReviews (reiews.map ( (r) => r.id ===id ? updated : r ) );
+    setReviews(reviews.map((r) => (r.id === id ? updated : r)));
   };
+
   const handleBookLikes = async (id) => {
     try {
       const book = books.find((b) => b.id === id);
- 
-      const res = await fetch(`http://localhost:3000/books/${id}`, {
+
+      const res = await fetch(`http://localhost:3001/books/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ likes: book.likes + 1 }),
       });
- 
+
       const updated = await res.json();
-      setBooks(books.map((b) => b.id === id ? updated : b));
+      setBooks(books.map((b) => (b.id === id ? updated : b)));
     } catch (err) {
       console.error(err);
     }
@@ -68,7 +69,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage books={books} reviews={reviews} />} />
           <Route path="/list" element={<ListPage books={books} />} />
-          <Route path="/create" element={<CreatePage />} />
+          <Route path="/create" element={<CreatePage onCreateBook={handleCreateBook} />} />
           <Route path="/detail/:id" element={<DetailPage books={books} reviews={reviews} />} />
         </Routes>
       </main>
