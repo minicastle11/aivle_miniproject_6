@@ -10,6 +10,11 @@ function App() {
     .sort((a, b) => b.likes - a.likes)
     .slice(0, 3);
 {/* 리뷰 데이터가 없어서 임의 생성하여 넣었습니다. */}
+  {/* 
+    const topReviews = [...reviews]
+      .sort((a, b) => b.likes - a.likes)
+      .slice(0, 3);
+  */}
   const topReviews = [
     {
       id: 1,
@@ -122,9 +127,11 @@ function App() {
                   {book.content}
                 </p>
 
-                <button className="detail-btn">
-                  자세히 보기
-                </button>
+                <Link to={`/detail/${book.id}`}>
+                  <button className="detail-btn">
+                    자세히 보기
+                  </button>
+                </Link>
 
               </div>
 
