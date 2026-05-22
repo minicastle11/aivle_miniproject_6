@@ -25,7 +25,7 @@ function App() {
     loadData();
   }, []);
 
-  const handleReviewLike = async => (id){
+  const handleReviewLike = async(id) =>{
     const review = reviews.find( r => r.id ===id);
 
     const res = await fetch ("`http://localhost:3000/reviews/${id}`",{
