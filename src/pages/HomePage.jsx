@@ -105,9 +105,12 @@ function App() {
                   {book.content}
                 </p>
 
-                <button className="detail-btn">
-                  자세히 보기
-                </button>
+              <Link
+                to={`/detail/${book.id}`}
+                className="detail-btn"
+              >
+                자세히 보기
+              </Link>
 
               </div>
 

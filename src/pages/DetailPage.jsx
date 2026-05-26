@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 function DetailPage({books, reviews,onReviewAdd, onReviewLike, onReviewEdit, onReviewDelete, onBookDelete, onBookEdit, onBookLikes }){
     const { id } = useParams();
-    const book = books.find( b => b.id === Number(id));
+    const book = books.find( b => String(b.id) === String(id));
     console.log(book)
     return(
         <>

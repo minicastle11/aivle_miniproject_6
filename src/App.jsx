@@ -31,14 +31,21 @@ function App() {
 
     //  create 관련 함수 
   const handleCreateBook = async (newBook) => {
+    const isData = typeof newBook.coverImageUrl === 'string' && newBook.coverImageUrl.startsWith('data:');
+    const payload = isData ? { ...newBook, coverImageUrl: '' } : newBook;
     const res = await fetch('http://localhost:3000/books', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newBook),
+      body: JSON.stringify(payload),
     });
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || `등록 실패 (${res.status})`);
+    }
     const savedBook = await res.json();
-    setBooks([savedBook, ...books]);
-    return savedBook;
+    const merged = isData ? { ...savedBook, coverImageUrl: newBook.coverImageUrl } : savedBook;
+    setBooks([merged, ...books]);
+    return merged;
   };
   const handleReviewLike = async (id) => {
     const review = reviews.find( r => r.id ===id);
