@@ -67,30 +67,49 @@ function App() {
       console.error(err);
     }
   };
-  const handleReviewEdit = async(id) =>{
+  const handleReviewEdit = async(id, edited) =>{
     try {
-        const review = reviews.find((r) => r.id === Number(id));
-        const res = await fetch (`http://localhost:3000/reviews/${id}`);
+        const res = await fetch (`http://localhost:3000/reviews/${id}`,
+          {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(edited),
+          }
+        );
+        const updated = await res.json();
+        setReviews(reviews.map( r=> r.id ===Number(id) ? updated : r));
     }
-    catch{
-
+    catch (err){
+        console.error(err);
     }
   }
   
-  const handleBookEdit = async(id) =>{
+  const handleBookEdit = async(id, edited) =>{
     try {
-
+        const res = await fetch (`http://localhost:3000/books/${id}`,
+          {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(edited),
+          }
+        );
+        const updated = await res.json();
+        setReviews(books.map( b=> b.id ===Number(id) ? updated : b));
     }
-    catch{
-
+    catch (err){
+        console.error(err);
     }
   }
-    const handleBookDelete = async(id) =>{
+
+  const handleBookDelete = async(id) =>{
     try {
-
+      await fetch (`http://localhost:3000/books/${id}`,
+        {method: 'DELETE'}
+      );
+      setBooks (books.filter(b => b.id !== Number(id)));
     }
-    catch{
-
+    catch (err){
+      console.error(err);
     }
   }
 
@@ -101,9 +120,9 @@ function App() {
         {method: 'DELETE'}
       );
       setReviews(reviews.filter(r => r.id !==id ));
-
     }
-    catch{
+    catch (err){
+      console.error(err);
     }
 
   }
