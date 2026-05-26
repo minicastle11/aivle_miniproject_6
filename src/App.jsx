@@ -78,7 +78,7 @@ function App() {
           }
         );
         const updated = await res.json();
-        setReviews(reviews.map( r=> r.id ===Number(id) ? updated : r));
+        setReviews(reviews.map( r=> String(r.id) === String(id) ? updated : r));
         return updated
     }
     catch (err){
@@ -96,7 +96,7 @@ function App() {
           }
         );
         const updated = await res.json();
-        setReviews(books.map( b=> b.id ===Number(id) ? updated : b));
+        setBooks(books.map( b=> String(b.id) === String(id) ? updated : b));
     }
     catch (err){
         console.error(err);
@@ -108,7 +108,7 @@ function App() {
       await fetch (`http://localhost:3000/books/${id}`,
         {method: 'DELETE'}
       );
-      setBooks (books.filter(b => b.id !== Number(id)));
+      setBooks (books.filter(b => String(b.id) !== String(id)));
     }
     catch (err){
       console.error(err);
