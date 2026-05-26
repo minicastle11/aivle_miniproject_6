@@ -30,7 +30,9 @@ function HomePage({ books, reviews }) {
       <section className="top-book-section">
 
         <div className="section-title">
-          <h2>월간 인기 도서</h2>
+          <h2 className="section-main-title">
+            월간 인기 도서
+          </h2>
         </div>
 
         <div className="book-list">
@@ -94,8 +96,8 @@ function HomePage({ books, reviews }) {
 
         <div className="review-title-wrap">
 
-          <h2>
-            월간 리뷰
+          <h2 className="section-main-title">
+            인기 리뷰
           </h2>
 
         </div>
