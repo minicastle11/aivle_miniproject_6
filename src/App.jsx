@@ -55,8 +55,7 @@ function App() {
 
   const handleBookLikes = async (id) => {
     try {
-      const book = books.find((b) => Number(b.id) === Number(id));
-      console.log(book);
+      const book = books.find((b) => String(b.id) === String(id));
       const res = await fetch(`http://localhost:3000/books/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -64,7 +63,7 @@ function App() {
       });
 
       const updated = await res.json();
-      setBooks(books.map((b) => (Number(b.id) === Number(id) ? updated : b)));
+      setBooks(books.map((b) => (String(b.id) === String(id) ? updated : b)));
     } catch (err) {
       console.error(err);
     }
