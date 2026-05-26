@@ -64,8 +64,20 @@ function Create({ onCreate }) {
       alert('제목과 저자를 입력하세요');
       return;
     }
+
+    const now = new Date().toISOString();
+
     try {
-      await onCreate({ title, author, content, likes: 0, coverImageUrl });
+      await onCreate({
+        title,
+        author,
+        content,
+        likes: 0,
+        coverImageUrl,
+
+        createdAt: now,
+        updatedAt: now,
+      });
     } catch (err) {
       alert(`등록 실패: ${err.message}`);
     }
