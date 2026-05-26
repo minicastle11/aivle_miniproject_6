@@ -25,7 +25,6 @@ function ListPage({ books }) {
   return (
     <div className="list-page">
 
-      {/* 정렬 메뉴 */}
       <div className="sort-menu">
 
         <button
