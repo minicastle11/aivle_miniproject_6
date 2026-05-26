@@ -6,7 +6,7 @@ function ReviewItem({ review, bookTitle, onLike, onEdit, onDelete }) {
   const [nickname, setNickname] = useState(review.nickname);
   const [content, setContent] = useState(review.content);
 
-  const handleUpdate = ()=>{
+  const handleUpdate = async ()=>{
 
     if (!nickname.trim()) {
       alert("닉네임을 입력하세요.");
@@ -22,8 +22,13 @@ function ReviewItem({ review, bookTitle, onLike, onEdit, onDelete }) {
       content: content,
       updatedAt: formatDate(new Date())
     }
-    onEdit(review.id, updated);
-    setIsEditing(false)
+    try {
+      const ret = await onEdit(review.id, updated);
+      setIsEditing(false)
+    }catch{
+      alert('리뷰 업데이트 실패');
+      setIsEditing(true);
+    }
   }
 
   if (isEditing){
@@ -52,8 +57,8 @@ function ReviewItem({ review, bookTitle, onLike, onEdit, onDelete }) {
     return (
       <article >
         <div className="detail-review-item">
-          <p className="review-nickname">{review.nickname}</p>
-          <p className="review-content">{review.content}</p>
+          <p className="review-nickname">{nickname}</p>
+          <p className="review-content">{content}</p>
           <p className="review-date">
             최근 작성/수정:
           </p>

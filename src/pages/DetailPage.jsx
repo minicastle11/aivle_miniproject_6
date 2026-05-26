@@ -5,6 +5,10 @@ function DetailPage({books, reviews,onReviewAdd, onReviewLike, onReviewEdit, onR
     const { id } = useParams();
     const book = books.find( b => String(b.id) === String(id));
     console.log(book)
+
+    const handleBookDelete = () =>{
+        
+    }
     return(
         <>
         <div className="detail-content-area">

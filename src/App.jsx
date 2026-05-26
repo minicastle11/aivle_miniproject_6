@@ -85,6 +85,7 @@ function App() {
         );
         const updated = await res.json();
         setReviews(reviews.map( r=> r.id ===Number(id) ? updated : r));
+        return updated
     }
     catch (err){
         console.error(err);
