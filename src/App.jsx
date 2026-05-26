@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
 import CreatePage from './pages/CreatePage';
 import DetailPage from './pages/DetailPage';
+import ReviewListPage from './pages/ReviewListPage';
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -149,6 +150,7 @@ function App() {
         <nav>
           <Link to="/">홈</Link>
           <Link to="/list">도서목록</Link>
+          <Link to="/reviews">리뷰목록</Link>
           <Link to="/create" className="add-book-btn">+ 새 도서 등록</Link>
         </nav>
       </header>
@@ -162,6 +164,7 @@ function App() {
               onBookEdit={handleBookEdit} onBookDelete={handleBookDelete} onBookLikes={handleBookLikes}
               onReviewLike={handleReviewLike} onReviewEdit={handleReviewEdit} onReviewDelete={handleReviewDelete}
               onReviewAdd={handleReviewAdd} />} />
+          <Route path="/reviews" element={<ReviewListPage reviews={reviews} books={books}/>}/>
         </Routes>
       </main>
     </div>

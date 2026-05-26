@@ -1094,6 +1094,8 @@ body {
 
   height: 200px;
   transition: 0.3s;
+
+  text-align: left; 
 }
 
 .review-card:hover {
@@ -1167,3 +1169,54 @@ body {
 
   box-sizing: border-box;
 }
+
+.review-page-title {
+  text-align: center;
+
+  margin-bottom: 40px;
+}
+
+.review-list-page {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(350px, 1fr));
+
+  gap: 24px;
+}
+
+.review-card {
+  position: relative;
+
+  overflow: hidden;
+
+  background: white;
+}
+
+/* 리뷰 카드에 책 배경 홀로그램 추가 */
+/* .review-card::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background-image: var(--book-cover);
+
+  background-size: cover;
+  background-position: center;
+
+  opacity: 0.4;
+
+  filter: blur(1px);
+
+  transform: scale(1.1);
+
+  z-index: 0;
+}
+
+.review-card > * {
+  position: relative;
+
+  z-index: 1;
+} */
