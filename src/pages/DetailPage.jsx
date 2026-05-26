@@ -53,7 +53,10 @@ function DetailPage({books, reviews,onReviewAdd, onReviewLike, onReviewEdit, onR
             
             
                 <div className="detail-action">
-                    <button onClick={()=>onBookLikes(id)}>❤️{book.likes} </button>
+                    <button onClick={(e)=>{
+
+                        onBookLikes(id);
+                        }}>❤️{book.likes} </button>
                     <button onClick={()=>setIsEditing(true)}>수정하기</button>
                     <button onClick={handleBookDelete}>삭제하기</button>
                 </div>
