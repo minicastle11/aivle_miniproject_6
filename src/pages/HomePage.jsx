@@ -87,14 +87,17 @@ function HomePage({ books, reviews }) {
                 {book.title}
               </h3>
 
-              <div className="home-book-like">
-                ❤️ {book.likes}
+              <div className="home-book-meta">
+
+                <div className="home-book-like">
+                  ❤️{book.likes}
+                </div>
+
+                <span className="home-author">
+                  {book.author}
+                </span>
+
               </div>
-
-              <span className="home-author">
-                {book.author}
-              </span>
-
             </div>
 
           </div>
