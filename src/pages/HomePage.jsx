@@ -1,7 +1,21 @@
 import '../App.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function HomePage({ books, reviews }) {
+
+  const [keyword, setKeyword] = useState('');
+  const navigate = useNavigate();
+  const handleSearch = () => {
+
+  if (!keyword.trim()) {
+    return;
+  }
+
+  navigate(
+    `/list?keyword=${encodeURIComponent(keyword)}`
+  );
+};
 
   const topBooks = [...books]
     .sort((a, b) => b.likes - a.likes)
@@ -19,9 +33,16 @@ function HomePage({ books, reviews }) {
         <input
           type="text"
           placeholder="도서 제목으로 검색..."
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSearch();
+            }
+          }}
         />
 
-        <button>
+        <button onClick={handleSearch}>
           검색
         </button>
 
