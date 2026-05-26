@@ -183,6 +183,12 @@ body {
   min-height: 72px;
 
   word-break: keep-all;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  overflow: hidden;
 }
 .book-content p {
   color: #666;
@@ -616,36 +622,43 @@ body {
   color: #777;
   font-size: 18px;
 }
-
-/* BOOK GRID */
-
 .book-list {
   display: grid;
 
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 
   gap: 40px;
+
+  justify-content: start;
 }
-
-/* CARD */
-
 .book-card {
   background: white;
 
-  border-radius: 24px;
+  border-radius: 20px;
 
   overflow: hidden;
 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.08);
 
-  transition: 0.3s;
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
 
   display: flex;
   flex-direction: column;
+
+  width: 100%;
+  max-width: 450px;
+
+  height: 100%;
 }
 
 .book-card:hover {
   transform: translateY(-8px);
+
+  box-shadow:
+    0 16px 40px rgba(0,0,0,0.12);
 }
 
 /* IMAGE */
@@ -1104,4 +1117,67 @@ body {
 .review-card p {
   color: #555;
   line-height: 1.7;
+}
+
+.search-result-title {
+  text-align: center;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  margin: 30px 0;
+}
+
+.empty-result {
+  width: 100%;
+
+  text-align: center;
+
+  font-size: 20px;
+
+  color: #888;
+
+  padding: 80px 0;
+}
+
+.search-book-list {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(320px, 1fr));
+
+  gap: 30px;
+
+  margin-top: 30px;
+}
+
+.search-book-card {
+  max-width: 420px;
+
+  margin: 0 auto;
+}
+
+.search-author {
+  display: block;
+
+  width: 100%;
+  max-width: 100%;
+
+  background: #eef2ff;
+  color: #5b4bdb;
+
+  padding: 10px 16px;
+
+  border-radius: 999px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  margin-bottom: 18px;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  box-sizing: border-box;
 }
