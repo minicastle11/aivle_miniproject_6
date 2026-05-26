@@ -1,27 +1,32 @@
 import BookReportDetailList from '../components/BookReportDetailList'
 import { useParams } from 'react-router-dom';
 
-function DetailPage({books, reviews, onReviewLike, onReviewEdit, onReviewDelete }){
+function DetailPage({books, reviews,onReviewAdd, onReviewLike, onReviewEdit, onReviewDelete, onBookDelete, onBookEdit, onBookLikes }){
     const { id } = useParams();
     const book = books.find( b => b.id === Number(id));
-    console.log(books)
-    console.log(id)
     console.log(book)
     return(
         <>
-        <div>
-            {/*book.coverImageUrl !='' ? 
-            <img src = {book.coverImageUrl} img='img'/> : <></>*/}
-            <div>
+        <div className="detail-content-area">
+            <div className="detail-poster">
+            {book.coverImageUrl !='' ? 
+            <img src = {book.coverImageUrl} img='img'/> : <></>}
+            </div>
+            <div className="detail-info">
                 <h3>{book.title}</h3>
                 <p>{book.content}</p>
                 <p>생성일: {book.createAt}</p>
             </div>
+            <button onClick={()=>onBookLikes(id)}>❤️{book.likes} </button>
+            <button onClick={()=>onBookEdit(id)}>수정하기</button>
+            <button onClick={()=>onBookDelete(id)}>삭제하기</button>
         </div>
-            <BookReportDetailList
-            review= {reviews.filter(p => p.bookid === book.id )}
+        <BookReportDetailList
+            review= {reviews.filter(p => p.bookId === Number(book.id) )}
+            book={book}
             bookTitle={book.title}
-            onRevieLike={onReviewLike}
+            onCreate={onReviewAdd}
+            onReviewLike={onReviewLike}
             onReviewEdit={onReviewEdit}
             onReviewDelete={onReviewDelete}
             />

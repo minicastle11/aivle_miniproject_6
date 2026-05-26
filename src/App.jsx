@@ -54,21 +54,66 @@ function App() {
 
   const handleBookLikes = async (id) => {
     try {
-      const book = books.find((b) => b.id === id);
-
-      const res = await fetch(`http://localhost:3001/books/${id}`, {
+      const book = books.find((b) => b.id === Number(id));
+      const res = await fetch(`http://localhost:3000/books/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ likes: book.likes + 1 }),
       });
 
       const updated = await res.json();
-      setBooks(books.map((b) => (b.id === id ? updated : b)));
+      setBooks(books.map((b) => (b.id === Number(id) ? updated : b)));
     } catch (err) {
       console.error(err);
     }
   };
+  const handleReviewEdit = async(id) =>{
+    try {
+        const review = reviews.find((r) => r.id === Number(id));
+        const res = await fetch (`http://localhost:3000/reviews/${id}`);
+    }
+    catch{
 
+    }
+  }
+  
+  const handleBookEdit = async(id) =>{
+    try {
+
+    }
+    catch{
+
+    }
+  }
+    const handleBookDelete = async(id) =>{
+    try {
+
+    }
+    catch{
+
+    }
+  }
+
+
+  const handleReviewDelete = async(id) =>{
+    try {
+        await fetch (`http://localhost:3000/reviews/${id}`,
+        {method: 'DELETE'}
+      );
+      setReviews(reviews.filter(r => r.id !==id ));
+
+    }
+    catch{
+    }
+
+  }
+  const handleReviewAdd = (saved) =>{
+    try{
+      setReviews ([...reviews, saved])
+    }catch{
+      alert("새로고침 필요.");
+    }
+  }
 
   if (loading) {
     return <div>전체 데이터를 불러오는 중입니다...</div>;
@@ -92,11 +137,13 @@ function App() {
           <Route path="/" element={<HomePage books={books} reviews={reviews} />} />
           <Route path="/list" element={<ListPage books={books} />} />
           <Route path="/create" element={<CreatePage onCreateBook={handleCreateBook} />} />
-          <Route path="/detail/:id" element={<DetailPage books={books} reviews={reviews} />} />
+          <Route path="/detail/:id" element={<DetailPage books={books} reviews={reviews}
+              onBookEdit={handleBookEdit} onBookDelete={handleBookDelete} onBookLikes={handleBookLikes}
+              onReviewLike={handleReviewLike} onReviewEdit={handleReviewEdit} onReviewDelete={handleReviewDelete}
+              onReviewAdd={handleReviewAdd} />} />
         </Routes>
       </main>
     </div>
   );
 }
-
 export default App;

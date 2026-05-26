@@ -493,3 +493,71 @@ body {
 .form-group textarea:focus {
   border-color: #6a11cb;
 }
+
+.detail-content-area{
+    display: flex;
+    gap: 40px;
+    margin-top: 50px;
+    align-items: flex-start;
+}
+.detail-info{
+    padding: 10px;
+    flex: 1;
+}
+.detail-poster img{
+    width: 300px;
+    border-radius: 10px;
+}
+
+.detail-info h3{
+    font-size: 48px;
+    font-weight: bold;
+
+    margin-bottom: 50px;
+    margin-top:40px;
+
+    color: #222;
+}
+
+.detail-info p{
+    font-size: 22px;
+    line-height: 2;
+
+    color: #555;
+
+    max-width: 800px;
+}
+.detail-review-box{
+    margin-top: 80px;
+
+    padding: 40px;
+
+    background: #f8f8f8;
+    border-radius: 15px;
+}
+
+.detail-review-list{
+    height: 300px;
+
+    overflow-y: auto;
+
+    padding-right: 10px;
+
+    margin-bottom: 30px;
+}
+.detail-review-list::-webkit-scrollbar-thumb{
+    background: #bbb;
+    border-radius: 10px;
+}
+
+/* 리뷰 하나 */
+.detail-review-item{
+    padding: 20px;
+
+    margin-bottom: 15px;
+
+    background: white;
+    border-radius: 10px;
+
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}

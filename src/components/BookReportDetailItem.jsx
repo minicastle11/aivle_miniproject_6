@@ -1,10 +1,10 @@
-//import { formatDate, getLatestDate } from "./utils.js";
+import { formatDate, getLatestDate } from "./utils.js";
 
 function ReviewItem({ review, bookTitle, onLike, onEdit, onDelete }) {
+
   return (
-    <article className="review-card no-click">
-      <div className="review-main">
-        <h3>{bookTitle}</h3>
+    <article >
+      <div className="detail-review-item">
         <p className="review-nickname">{review.nickname}</p>
         <p className="review-content">{review.content}</p>
         <p className="review-date">
@@ -13,13 +13,13 @@ function ReviewItem({ review, bookTitle, onLike, onEdit, onDelete }) {
       </div>
 
       <div className="review-actions">
-        <button className="mini-like-button" onClick={onLike}>
+        <button className="mini-like-button" onClick={()=>{ onLike(review.id) }}>
           👍 {review.likes}
         </button>
         <button className="sub-button" onClick={onEdit}>
           수정
         </button>
-        <button className="danger-button" onClick={onDelete}>
+        <button className="danger-button" onClick={()=>{onDelete(review.id)}}>
           삭제
         </button>
       </div>

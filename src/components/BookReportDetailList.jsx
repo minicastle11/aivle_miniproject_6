@@ -66,9 +66,9 @@ function BookReportDetailList({ book, review,  onCreate, onReviewLike, onReviewE
         리뷰 등록
       </button>
     </form>
-    <ul>
+    <ul className="detail-review-list" >
       {review.map (p =>
-      <ReviewItem
+      <ReviewItem key={p.id}
         review={p}
         bookTitle={book.title}
         onLike={onReviewLike}
