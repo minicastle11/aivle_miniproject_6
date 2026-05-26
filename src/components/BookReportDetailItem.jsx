@@ -5,7 +5,6 @@ function ReviewItem({ review, bookTitle, onLike, onEdit, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
   const [nickname, setNickname] = useState(review.nickname);
   const [content, setContent] = useState(review.content);
-
   const handleUpdate = async ()=>{
 
     if (!nickname.trim()) {
@@ -20,7 +19,7 @@ function ReviewItem({ review, bookTitle, onLike, onEdit, onDelete }) {
     const updated = {
       nickname: nickname,
       content: content,
-      updatedAt: formatDate(new Date())
+      updatedAt: new Date()
     }
     try {
       const ret = await onEdit(review.id, updated);
@@ -62,7 +61,7 @@ function ReviewItem({ review, bookTitle, onLike, onEdit, onDelete }) {
           <p className="review-nickname">{nickname}</p>
           <p className="review-content">{content}</p>
           <p className="review-date">
-            최근 작성/수정:
+            최근 작성/수정: {formatDate(getLatestDate(review))}
           </p>
         </div>
 

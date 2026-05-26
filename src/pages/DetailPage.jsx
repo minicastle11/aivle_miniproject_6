@@ -1,11 +1,15 @@
 import BookReportDetailList from '../components/BookReportDetailList'
+import BookDetailEdit from '../components/BookDetailEdit'
 import { useParams, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { formatDate, getLatestDate } from "../components/utils.js";
 
 function DetailPage({books, reviews,onReviewAdd, onReviewLike, onReviewEdit, onReviewDelete, onBookDelete, onBookEdit, onBookLikes }){
     const { id } = useParams();
     const navigate = useNavigate();
     const book = books.find( b => String(b.id) === String(id));
-    console.log(book)
+
+    const [isEditing, setIsEditing] = useState(false);
 
     const handleBookDelete = () =>{
         const isConfirmed = window.confirm("정말 삭제하시겠습니까?");
@@ -15,6 +19,23 @@ function DetailPage({books, reviews,onReviewAdd, onReviewLike, onReviewEdit, onR
         navigate ('/')
     }
 
+    const handleBookEdit = (edited) => {
+        onBookEdit (id, edited)
+        setIsEditing(false)
+    }
+    
+    const handleBookEditCancel = ()=>{
+
+        setIsEditing(false)
+    }
+
+    if (isEditing){
+        return (
+            <>
+             <BookDetailEdit book = {book} onEdit={handleBookEdit} onCancel={handleBookEditCancel}/>
+             </>
+        )
+    }
     return(
         <>
         <div className="detail-content-area">
@@ -27,13 +48,13 @@ function DetailPage({books, reviews,onReviewAdd, onReviewLike, onReviewEdit, onR
                 <div className="detail-info">
                     <h2>{book.title}</h2>
                     <p>{book.content}</p>
-                    <p>생성일: {new Date(book.createdAt).toLocaleDateString()}</p>
+                    <p>생성일/수정일: {formatDate(getLatestDate(book))}</p>
                 </div>
             
             
                 <div className="detail-action">
                     <button onClick={()=>onBookLikes(id)}>❤️{book.likes} </button>
-                    <button onClick={()=>onBookEdit(id)}>수정하기</button>
+                    <button onClick={()=>setIsEditing(true)}>수정하기</button>
                     <button onClick={handleBookDelete}>삭제하기</button>
                 </div>
 
