@@ -1,16 +1,54 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function ReviewListPage({ reviews, books }) {
-    const sortedReviews = [...reviews]
-        .sort((a, b) => b.likes - a.likes);
+
+    const [sortType, setSortType] = useState('latest');
+
+    const sortedReviews = [...reviews].sort((a, b) => {
+
+        if (sortType === 'latest') {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        }
+
+        if (sortType === 'nickname') {
+            return a.nickname.localeCompare(b.nickname);
+        }
+
+        if (sortType === 'likes') {
+            return b.likes - a.likes;
+        }
+
+        return 0;
+    });
 
     return (
-        <div className="review-page">
+        <div className="list-page">
 
-        <h1 className="review-page-title">
-            전체 리뷰
-        </h1>
+        <div className="sort-menu">
 
+            <button
+                className={sortType === 'latest' ? 'active' : ''}
+                onClick={() => setSortType('latest')}
+            >
+                최신순
+            </button>
+
+            <button
+                className={sortType === 'nickname' ? 'active' : ''}
+                onClick={() => setSortType('nickname')}
+            >
+                작성자순
+            </button>
+
+            <button
+                className={sortType === 'likes' ? 'active' : ''}
+                onClick={() => setSortType('likes')}
+            >
+                좋아요순
+            </button>
+
+        </div>
         <div className="review-list-page">
 
             {sortedReviews.map((review) => {
