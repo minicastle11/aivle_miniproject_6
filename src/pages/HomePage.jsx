@@ -1,15 +1,14 @@
 import '../App.css';
-import db from '../../db.json';
 import { Link } from 'react-router-dom';
 
-function App() {
+function HomePage({ books, reviews }) {
 
-  const books = db.books;
-
+  // 좋아요 TOP 3
   const topBooks = [...books]
     .sort((a, b) => b.likes - a.likes)
     .slice(0, 3);
-{/* 리뷰 데이터가 없어서 임의 생성하여 넣었습니다. */}
+
+  // 리뷰 데이터 임시
   const topReviews = [
     {
       id: 1,
@@ -39,11 +38,6 @@ function App() {
   return (
     <div className="app">
 
-      {/* HERO */}
-      <section className="hero">
-
-      </section>
-
       {/* SEARCH */}
       <div className="search-box">
 
@@ -58,20 +52,21 @@ function App() {
 
       </div>
 
+      {/* 인기 도서 */}
       <section className="top-book-section">
 
         <div className="section-title">
-
           <h2>월간 인기 도서</h2>
-
-
         </div>
 
         <div className="book-list">
 
           {topBooks.map((book) => (
 
-            <div className="book-card" key={book.id}>
+            <div
+              className="book-card"
+              key={book.id}
+            >
 
               {/* IMAGE */}
               <div className="image-wrap">
@@ -83,6 +78,7 @@ function App() {
 
               </div>
 
+              {/* CONTENT */}
               <div className="book-content">
 
                 <div className="top-row">
@@ -105,14 +101,13 @@ function App() {
                   {book.content}
                 </p>
 
-              <Link
-                to={`/detail/${book.id}`}
-                className="detail-link"
-              >
-
-                자세히 보기
-
-              </Link>
+                {/* DETAIL PAGE */}
+                <Link
+                  to={`/detail/${book.id}`}
+                  className="detail-link"
+                >
+                  자세히 보기
+                </Link>
 
               </div>
 
@@ -124,6 +119,7 @@ function App() {
 
       </section>
 
+      {/* 리뷰 */}
       <section className="review-section">
 
         <div className="review-title-wrap">
@@ -132,14 +128,16 @@ function App() {
             월간 리뷰
           </h2>
 
-
         </div>
 
         <div className="review-list">
 
           {topReviews.map((review) => (
 
-            <div className="review-card" key={review.id}>
+            <div
+              className="review-card"
+              key={review.id}
+            >
 
               <div className="review-top">
 
@@ -172,8 +170,9 @@ function App() {
         </div>
 
       </section>
+
     </div>
   );
 }
 
-export default App;
+export default HomePage;
