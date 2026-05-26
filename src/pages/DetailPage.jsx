@@ -23,7 +23,7 @@ function DetailPage({books, reviews,onReviewAdd, onReviewLike, onReviewEdit, onR
             <img src = {book.coverImageUrl} img='img'/> : <></>}
             </div>
             <div className="detail-info">
-                <h3>{book.title}</h3>
+                <h2>{book.title}</h2>
                 <p>{book.content}</p>
                 <p>생성일: {new Date(book.createdAt).toLocaleDateString()}</p>
             </div>
