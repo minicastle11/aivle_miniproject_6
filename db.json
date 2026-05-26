@@ -566,7 +566,7 @@
       "createdAt": "2026-05-26T02:24:07.708Z",
       "updatedAt": "2026. 05. 26. 오전 11:31",
       "id": "6_wSd7VfYA4"
-    }
+      }
   ],
   "$schema": "./node_modules/json-server/schema.json"
 }
