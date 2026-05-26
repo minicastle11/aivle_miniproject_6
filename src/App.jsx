@@ -40,6 +40,7 @@ function App() {
     setBooks([savedBook, ...books]);
     return savedBook;
   };
+  
   const handleReviewLike = async (id) => {
     const review = reviews.find( r => r.id ===id);
 
@@ -54,7 +55,8 @@ function App() {
 
   const handleBookLikes = async (id) => {
     try {
-      const book = books.find((b) => b.id === Number(id));
+      const book = books.find((b) => Number(b.id) === Number(id));
+      console.log(book);
       const res = await fetch(`http://localhost:3000/books/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -62,7 +64,7 @@ function App() {
       });
 
       const updated = await res.json();
-      setBooks(books.map((b) => (b.id === Number(id) ? updated : b)));
+      setBooks(books.map((b) => (Number(b.id) === Number(id) ? updated : b)));
     } catch (err) {
       console.error(err);
     }
