@@ -578,6 +578,20 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
+.detail-review-card{
+  max-width: 1200px;
+  margin: 24px auto 0;
+  padding: 24px 32px;
+
+  background: white;
+  border-radius: 18px;
+  box-sizing: border-box;
+
+  text-align: center;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
 /* LIST PAGE */
 
 .list-page {

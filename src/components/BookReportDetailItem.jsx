@@ -56,7 +56,7 @@ function ReviewItem({ review, bookTitle, onLike, onEdit, onDelete }) {
   }
   else
     return (
-      <article >
+      <article className="detail-review-card">
         <div className="detail-review-item">
           <p className="review-nickname">{nickname}</p>
           <p className="review-content">{content}</p>
