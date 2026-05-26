@@ -6,9 +6,12 @@ function ListPage() {
   const books = db.books;
 
   return (
-    <div>
+    <div className="list-page">
 
-      <h1>📚 전체 도서 목록</h1>
+      <div className="page-title">
+
+
+      </div>
 
       <div className="book-list">
 
@@ -16,26 +19,37 @@ function ListPage() {
 
           <div className="book-card" key={book.id}>
 
-            <img
-              src={book.coverImageUrl}
-              alt={book.title}
-            />
+            <div className="image-wrap">
 
-            <h3>{book.title}</h3>
+              <img
+                src={book.coverImageUrl}
+                alt={book.title}
+              />
 
-            <p>{book.author}</p>
-
-            <div>
-              ❤️ {book.likes}
             </div>
 
-            <Link to={`/detail/${book.id}`}>
+            <div className="book-content">
 
-              <button>
+              <h2>{book.title}</h2>
+
+              <span className="author">
+                {book.author}
+              </span>
+
+              <div className="book-like">
+                ❤️ {book.likes}
+              </div>
+
+              <Link
+                to={`/detail/${book.id}`}
+                className="detail-link"
+              >
+
                 자세히 보기
-              </button>
 
-            </Link>
+              </Link>
+
+            </div>
 
           </div>
 
