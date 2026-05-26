@@ -846,3 +846,29 @@ body {
 .review-form .primary-button:hover {
   transform: translateY(-2px);
 }
+
+.sort-menu {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.sort-menu button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #f1f3f5;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.sort-menu button:hover {
+  background: #e9ecef;
+}
+
+.sort-menu button.active {
+  background: #111827;
+  color: white;
+}
