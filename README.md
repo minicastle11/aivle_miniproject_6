@@ -341,11 +341,11 @@ OpenAI API Key는 코드나 `db.json`에 저장하지 않습니다.
 
 ### 홈 화면
 
-![홈 화면](./screenshots/home.png)
+![홈 화면](./screenshots/home.jpeg)
 
 ### 도서 목록 화면
 
-![도서 목록 화면](./screenshots/list.png)
+![도서 목록 화면](./screenshots/list.jpeg)
 
 ### 리뷰 목록 화면
 
