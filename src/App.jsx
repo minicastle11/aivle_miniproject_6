@@ -35,9 +35,9 @@ function App() {
 
   useEffect(() => {
 
-    setTags([...new Set(books.flatMap(b => b.tag ? b.tag : []))]);
+    setTags([...new Set(books.flatMap(b => b.tags ? b.tags : []))]);
 
-  }, [books]); 
+  }, [books]);
 
 
     //  create 관련 함수 
