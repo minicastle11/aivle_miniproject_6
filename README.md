@@ -341,8 +341,7 @@ OpenAI API Key는 코드나 `db.json`에 저장하지 않습니다.
 
 ### 홈 화면
 
-![홈 화면 1](./screenshots/home1.png)
-![홈 화면 2](./screenshots/home2.png)
+![홈 화면](./screenshots/home.png)
 
 ### 도서 목록 화면
 
