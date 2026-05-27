@@ -1,4 +1,4 @@
-import { formatDate, getLatestDate } from "./utils.js";
+import { formatDate, getLatestDate, hslFromName } from "./utils.js";
 import { useState } from 'react';
 function ReviewItem({ review, bookTitle, onLike, onEdit, onDelete }) {
 
@@ -63,24 +63,28 @@ function ReviewItem({ review, bookTitle, onLike, onEdit, onDelete }) {
   else
     return (
       <article className="detail-review-card">
-        <div className="detail-review-item">
-          <p className="review-nickname">{nickname}</p>
+        <div className="review-avatar" style={{ background: hslFromName(nickname) }}>
+          {(nickname?.trim()?.[0] || "?").toUpperCase()}
+        </div>
+        <div className="review-body">
+          <div className="review-head">
+            <p className="review-nickname">{nickname}</p>
+            <button className="like-btn" onClick={()=>{ onLike(review.id) }}>
+              ❤️ {review.likes}
+            </button>
+          </div>
           <p className="review-content">{content}</p>
           <p className="review-date">
-            최근 작성/수정: {formatDate(getLatestDate(review))}
+            {formatDate(getLatestDate(review))}
           </p>
-        </div>
-
-        <div className="review-actions">
-          <button className="like-btn" onClick={()=>{ onLike(review.id) }}>
-            ❤️ {review.likes}
-          </button>
-          <button className="sub-button" onClick={()=>{setIsEditing(true)}}>
-            수정
-          </button>
-          <button className="sub-button" onClick={()=>{onDelete(review.id)}}>
-            삭제
-          </button>
+          <div className="review-actions">
+            <button className="sub-button" onClick={()=>{setIsEditing(true)}}>
+              수정
+            </button>
+            <button className="sub-button" onClick={()=>{onDelete(review.id)}}>
+              삭제
+            </button>
+          </div>
         </div>
       </article>
     );

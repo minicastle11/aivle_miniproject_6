@@ -2,7 +2,7 @@ import BookReportDetailList from '../components/BookReportDetailList'
 import BookDetailEdit from '../components/BookDetailEdit'
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { formatDate, getLatestDate } from "../components/utils.js";
+import { formatDate } from "../components/utils.js";
 
 function DetailPage({books, reviews,onReviewAdd, onReviewLike, onReviewEdit, onReviewDelete, onBookDelete, onBookEdit, onBookLikes }){
     const { id } = useParams();
@@ -46,10 +46,15 @@ function DetailPage({books, reviews,onReviewAdd, onReviewLike, onReviewEdit, onR
                 </div>
             
                 <div className="detail-info">
-                    <h2>{book.title}</h2>
-                    <p>{book.content}</p>
-                    <p>{book.tag?.map(t=> `#${t} ` )}</p>
-                    <p>생성일/수정일: {formatDate(getLatestDate(book))}</p>
+                    <h2 className="detail-title">{book.title}</h2>
+                    <p className="detail-content-quote">{book.content}</p>
+                    {book.tag?.length > 0 && (
+                        <p className="detail-tag-line">{book.tag.map(t=> `#${t} ` )}</p>
+                    )}
+                    <div className="detail-meta">
+                        <span className="detail-meta-item">생성 {formatDate(book.createdAt)}</span>
+                        <span className="detail-meta-item">수정 {formatDate(book.updatedAt)}</span>
+                    </div>
                 </div>
             
             

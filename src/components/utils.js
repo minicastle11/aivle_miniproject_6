@@ -32,3 +32,12 @@ export function getLatestDate(item) {
 export function getReviewCountByBookId(reviews, bookId) {
   return reviews.filter((review) => Number(review.bookId) === Number(bookId)).length;
 }
+
+export function hslFromName(name) {
+  const text = (name || "?").trim() || "?";
+  let hash = 0;
+  for (let i = 0; i < text.length; i++) {
+    hash = (hash * 31 + text.charCodeAt(i)) >>> 0;
+  }
+  return `hsl(${hash % 360}, 65%, 55%)`;
+}
