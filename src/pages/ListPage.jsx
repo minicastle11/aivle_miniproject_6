@@ -79,7 +79,6 @@ function ListPage({ books, tags }) {
           좋아요순
         </button>
 
-      {/* ─── 태그 한 줄 출력 영역 ─── */}
       <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
         {['전체',...tags].map((t) => {
           const isSelected = selectedTag === t;

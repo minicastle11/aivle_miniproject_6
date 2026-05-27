@@ -1260,6 +1260,7 @@ body {
 }
 
 /* 리뷰 카드에 책 배경 홀로그램 추가 */
+/* 필요시 추가*/
 /* .review-card::before {
   content: "";
 
@@ -1295,8 +1296,6 @@ body {
   gap: 6px;
   width: 100%;
 }
-
-/* ─── Detail / Review 안 C: 컬러풀 카드 + 아바타 ─── */
 
 .detail-main {
   background: #ffffff;
@@ -1357,7 +1356,6 @@ body {
   gap: 4px;
 }
 
-/* 리뷰 카드 — 안 C */
 .detail-review-card {
   display: flex;
   gap: 16px;
