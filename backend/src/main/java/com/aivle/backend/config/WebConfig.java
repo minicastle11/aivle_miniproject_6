@@ -1,4 +1,4 @@
-package com.example.bookmanager.api.config;
+package com.aivle.backend.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

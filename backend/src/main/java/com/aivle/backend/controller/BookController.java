@@ -1,38 +1,48 @@
 package com.aivle.backend.controller;
 
+import com.aivle.backend.entity.Book;
+import com.aivle.backend.service.BookService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/books")
+@RequiredArgsConstructor
 public class BookController {
 
+    private final BookService bookService;
+
     @GetMapping
-    public String getBooks() {
-        return "도서 목록";
+    public List<Book> getBooks() {
+        return bookService.getBooks();
     }
 
     @GetMapping("/{id}")
-    public String getBook(@PathVariable Long id) {
-        return "도서 상세";
+    public Book getBook(@PathVariable Long id) {
+        return bookService.getBook(id);
     }
 
     @PostMapping
-    public String createBook() {
-        return "도서 등록";
+    public ResponseEntity<Book> createBook(@RequestBody Book book) {
+        return ResponseEntity.status(201).body(bookService.createBook(book));
     }
 
     @PatchMapping("/{id}")
-    public String updateBook(@PathVariable Long id) {
-        return "도서 수정";
+    public Book updateBook(@PathVariable Long id, @RequestBody Book book) {
+        return bookService.updateBook(id, book);
     }
 
     @PatchMapping("/{id}/cover")
-    public String updateCover(@PathVariable Long id) {
-        return "표지 수정";
+    public Book updateCover(@PathVariable Long id, @RequestBody Book book) {
+        return bookService.updateCover(id, book.getCoverImageUrl());
     }
 
     @DeleteMapping("/{id}")
-    public String deleteBook(@PathVariable Long id) {
-        return "도서 삭제";
+    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
+        bookService.deleteBook(id);
+        return ResponseEntity.noContent().build();
     }
 }
