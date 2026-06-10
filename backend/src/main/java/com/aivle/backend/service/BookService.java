@@ -65,6 +65,7 @@ public class BookService {
     }
 
     // 좋아요 버튼
+    @Transactional
     public Book likeBook(Long id) {
         Book book = getBook(id);
         book.setLikes(book.getLikes() + 1);
