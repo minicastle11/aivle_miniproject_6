@@ -4,7 +4,7 @@ spring:
 
 
   datasource:
-    url: jdbc:h2:mem:bookdb
+    url: jdbc:h2:file:./data/bookdb
     driver-class-name: org.h2.Driver
     username: sa
     password: 1234
@@ -17,7 +17,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
