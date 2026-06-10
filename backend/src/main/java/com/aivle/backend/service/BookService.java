@@ -29,15 +29,16 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    // 수정
+    // 수정 (부분수정: 넘어온 필드만 변경)
     public Book updateBook(Long id, Book newData) {
-        Book book = getBook(id);                 // 기존 책 찾고
-        book.setTitle(newData.getTitle());       // 값 바꾸고
-        book.setAuthor(newData.getAuthor());
-        book.setContent(newData.getContent());
-        book.setCoverImageUrl(newData.getCoverImageUrl());
-        book.setUpdatedAt(LocalDateTime.now());  // 수정 시각 갱신
-        return bookRepository.save(book);        // 다시 저장
+        Book book = getBook(id);                                  // 기존 책 찾고
+        if (newData.getTitle() != null) book.setTitle(newData.getTitle());
+        if (newData.getAuthor() != null) book.setAuthor(newData.getAuthor());
+        if (newData.getContent() != null) book.setContent(newData.getContent());
+        if (newData.getCoverImageUrl() != null) book.setCoverImageUrl(newData.getCoverImageUrl());
+        if (newData.getTags() != null) book.setTags(newData.getTags());
+        book.setUpdatedAt(LocalDateTime.now());                   // 수정 시각 갱신
+        return bookRepository.save(book);                         // 다시 저장
     }
 
     // 삭제

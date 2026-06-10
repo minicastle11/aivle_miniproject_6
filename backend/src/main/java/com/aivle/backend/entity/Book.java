@@ -34,6 +34,9 @@ public class Book {
     @Lob @Column(columnDefinition = "TEXT")
     private String coverImageUrl;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> tags;     // 프론트 태그 필터용 (json-server 호환)
+
     private Integer likes;
 
     private LocalDateTime createdAt;
