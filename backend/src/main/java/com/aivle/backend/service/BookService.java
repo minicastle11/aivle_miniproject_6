@@ -44,6 +44,9 @@ public class BookService {
 
     // 삭제
     public void deleteBook(Long id) {
+        if (!bookRepository.existsById(id)) {
+            throw new BookNotFoundException(id);
+        }
         bookRepository.deleteById(id);
     }
 
