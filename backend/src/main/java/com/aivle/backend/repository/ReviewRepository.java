@@ -7,9 +7,11 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
-    List<Review> findAllByOrderByUpdatedAtDesc();
+//    List<Review> findAllByOrderByUpdatedAtDesc();
 
-    List<Review> findByBook_IdOrderByUpdatedAtDesc(Long bookId);
+//    List<Review> findByBook_IdOrderByUpdatedAtDesc(Long bookId);
 
-    void deleteByBook_Id(Long bookId);
+    List<Review> findByBookId(Long bookId);
+
+//    void deleteByBook_Id(Long bookId);
 }
