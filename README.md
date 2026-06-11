@@ -424,8 +424,9 @@ React Frontend와 Spring Boot Backend를 연동하여 도서 등록, 조회, 수
 
 ## 15. E2E 시연 흐름
 
-```txt
 1. Frontend 접속
+![홈 화면](./screenshots/홈 화면.png)
+
 2. 도서 등록
 3. 등록된 도서 목록 확인
 4. 도서 상세 페이지 이동
@@ -437,7 +438,6 @@ React Frontend와 Spring Boot Backend를 연동하여 도서 등록, 조회, 수
 10. 도서 정보 수정
 11. 리뷰 수정 또는 삭제
 12. 도서 삭제
-```
 
 ---
 
