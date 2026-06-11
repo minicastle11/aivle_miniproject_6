@@ -494,7 +494,9 @@ React Frontend와 Spring Boot Backend를 연동하여 도서 등록, 조회, 수
 |---|---|
 | ![삭제 알림](<./screenshots/E2E 시연 흐름/10. 도서 삭제 알림.png>) | ![삭제 전 도서](<./screenshots/E2E 시연 흐름/10. 도서삭제 전 도서.png>) |
 
-## 16. 프로젝트 의의
+---
+
+## 17. 프로젝트 의의
 
 본 프로젝트를 통해 단순한 정적 데이터 관리 방식에서 벗어나 Spring Boot 기반의 Backend API 서버를 직접 구현하였다. 또한 React와 Spring Boot의 통신 구조를 이해하고, JPA를 활용한 데이터 영속성 처리와 전역 예외 처리 구조를 적용하였다.
 
