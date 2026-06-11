@@ -25,7 +25,7 @@
 | 이름 | 역할          | 담당 내용 | 주요 결과 |
 | -- | ----------- | ----- | ----- |
 | 이은선 | PM / 문서화    | API 정의서, README.md 작성, 프로젝트 총괄 점검              |
-| 한준우 | Backend 개발  | Entity 작성, Repository 관리, H2ㅗㄴ솔, Lombok 적용         |
+| 한준우 | Backend 개발  | Entity 작성, Repository 관리, H2 콘솔, Lombok 적용         |
 | 서한석 | Backend 개발  | Service 클래스, 비즈니스 로직, 예외 처리, @Transactional       |
 | 최준석 | Backend 개발  | Controller 관리, CRUD 엔드포인트 점검, @Valid+@NotBlank, Postman 테스트 |
 | 조은진 | AI/Frontend 연동 | Frontend 코드 분석 및 연동, OpenAI 표지 흐름, E2E 시연      |
