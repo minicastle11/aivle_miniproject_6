@@ -22,14 +22,14 @@
 
 ## 2. 팀원 R&R
 
-| 이름 | 역할          | 담당 내용 | 주요 결과 |
-| -- | ----------- | ----- | ----- |
-| 이은선 | PM / 문서화    | API 정의서, README.md 작성, 프로젝트 총괄 점검              |
-| 한준우 | Backend 개발  | Entity 작성, Repository 관리, H2 콘솔, Lombok 적용         |
-| 서한석 | Backend 개발  | Service 클래스, 비즈니스 로직, 예외 처리, @Transactional       |
-| 최준석 | Backend 개발  | Controller 관리, CRUD 엔드포인트 점검, @Valid+@NotBlank, Postman 테스트 |
-| 조은진 | AI/Frontend 연동 | Frontend 코드 분석 및 연동, OpenAI 표지 흐름, E2E 시연      |
-| 양경동 | 통합 / 예외처리  | WebConfig(CORS), 전역 예외 처리, 풀스택 디버깅, 트러블슈팅 |
+| 이름 | 역할 | 담당 내용 |
+| -- | ----------- | ----- |
+| 이은선 | PM / 문서화 | API 정의서, README.md 작성, 프로젝트 총괄 점검 |
+| 한준우 | Backend 개발 | Entity 작성, Repository 관리, H2 콘솔, Lombok 적용 |
+| 서한석 | Backend 개발 | Service 클래스, 비즈니스 로직, 예외 처리, @Transactional |
+| 최준석 | Backend 개발 | Controller 관리, CRUD 엔드포인트 점검, @Valid+@NotBlank, Postman 테스트 |
+| 조은진 | AI/Frontend 연동 | Frontend 코드 분석 및 연동, OpenAI 표지 흐름, E2E 시연 |
+| 양경동 | 통합 / 예외처리 | WebConfig(CORS), 전역 예외 처리, 풀스택 디버깅, 트러블슈팅 |
 
 ---
 
@@ -65,17 +65,17 @@
 
 ## 4. 기술 스택
 
-| 구분       | 기술                                             |
+| 구분 | 기술 |
 | -------- | ---------------------------------------------- |
-| Frontend | React 19, Vite, JavaScript, fetch API          |
-| Backend  | Java, Spring Boot, Spring MVC, Spring Data JPA |
-| Database | H2 Database                                    |
-| ORM      | JPA, Hibernate                                 |
-| Library  | Lombok, Validation                             |
-| AI API   | OpenAI Image Generation API                    |
-| 협업       | GitHub                                         |
-| API 테스트  | Postman                                        |
-| 개발 환경    | IntelliJ IDEA, VS Code                         |
+| Frontend | React 19, Vite, JavaScript, fetch API |
+| Backend | Java, Spring Boot, Spring MVC, Spring Data JPA |
+| Database | H2 Database |
+| ORM | JPA, Hibernate |
+| Library | Lombok, Validation |
+| AI API | OpenAI Image Generation API |
+| 협업 | GitHub |
+| API 테스트 | Postman |
+| 개발 환경 | IntelliJ IDEA, VS Code |
 
 ---
 
@@ -152,30 +152,29 @@ aivle_miniproject_v2
 
 도서 정보를 저장하는 엔티티이다.
 
-| 필드명             | 설명                     |
+| 필드명 | 설명 |
 | --------------- | ---------------------- |
-| `id`            | 도서 ID                  |
-| `title`         | 도서 제목                  |
-| `author`        | 작가명                    |
-| `content`       | 도서 내용                  |
+| `id` | 도서 ID |
+| `title` | 도서 제목 |
+| `author` | 작가명 |
+| `content` | 도서 내용 |
 | `coverImageUrl` | 표지 이미지 URL 또는 Data URL |
-| `likes`         | 좋아요 수                  |
-| `createdAt`     | 생성 시각                  |
-| `updatedAt`     | 수정 시각                  |
+| `likes` | 좋아요 수 |
+| `createdAt` | 생성 시각 |
+| `updatedAt` | 수정 시각 |
 
 #### Review
 
 도서 리뷰 정보를 저장하는 엔티티이다.
 
-| 필드명         | 설명            |
+| 필드명 | 설명 |
 | ----------- | ------------- |
-| `id`        | 리뷰 ID         |
-| `bookId`    | 리뷰가 연결된 도서 ID |
-| `nickname`  | 리뷰 작성자 닉네임    |
-| `content`   | 리뷰 내용         |
-| `likes`     | 리뷰 좋아요 수      |
-| `createdAt` | 생성 시각         |
-| `updatedAt` | 수정 시각         |
+| `id` | 리뷰 ID |
+| `bookId` | 리뷰가 연결된 도서 ID |
+| `nickname` | 리뷰 작성자 닉네임 |
+| `content` | 리뷰 내용 |
+| `createdAt` | 생성 시각 |
+| `updatedAt` | 수정 시각 |
 
 ---
 
@@ -185,39 +184,39 @@ aivle_miniproject_v2
 
 ### 8.1 Books API
 
-| 기능           | Method | URL                 |
+| 기능 | Method | URL |
 | ------------ | ------ | ------------------- |
-| 도서 목록 조회     | GET    | `/books`            |
-| 도서 상세 조회     | GET    | `/books/{id}`       |
-| 도서 등록        | POST   | `/books`            |
-| 도서 수정        | PATCH  | `/books/{id}`       |
-| AI 표지 이미지 저장 | PATCH  | `/books/{id}/cover` |
-| 도서 좋아요 증가    | PATCH  | `/books/{id}/like`  |
-| 도서 삭제        | DELETE | `/books/{id}`       |
+| 도서 목록 조회 | GET | `/books` |
+| 도서 상세 조회 | GET | `/books/{id}` |
+| 도서 등록 | POST | `/books` |
+| 도서 수정 | PATCH | `/books/{id}` |
+| AI 표지 이미지 저장 | PATCH | `/books/{id}/cover` |
+| 도서 좋아요 증가 | PATCH | `/books/{id}/like` |
+| 도서 삭제 | DELETE | `/books/{id}` |
 
 ### 8.2 Reviews API
 
-| 기능          | Method | URL                        |
+| 기능 | Method | URL |
 | ----------- | ------ | -------------------------- |
-| 리뷰 전체 조회    | GET    | `/reviews`                 |
-| 특정 도서 리뷰 조회 | GET    | `/reviews?bookId={bookId}` |
-| 리뷰 등록       | POST   | `/reviews`                 |
-| 리뷰 수정       | PATCH  | `/reviews/{id}`            |
-| 리뷰 삭제       | DELETE | `/reviews/{id}`            |
+| 리뷰 전체 조회 | GET | `/reviews` |
+| 특정 도서 리뷰 조회 | GET | `/reviews?bookId={bookId}` |
+| 리뷰 등록 | POST | `/reviews` |
+| 리뷰 수정 | PATCH | `/reviews/{id}` |
+| 리뷰 삭제 | DELETE | `/reviews/{id}` |
 
 ---
 
 ## 9. 실행 방법
 
-## 9.1 Backend 실행
+### 9.1 Backend 실행
 
-### 1. Backend 폴더로 이동
+#### 1. Backend 폴더로 이동
 
 ```bash
 cd backend
 ```
 
-### 2. Spring Boot 서버 실행
+#### 2. Spring Boot 서버 실행
 
 Windows 환경:
 
@@ -231,13 +230,13 @@ Mac 또는 Linux 환경:
 ./gradlew bootRun
 ```
 
-### 3. Backend 서버 접속 주소
+#### 3. Backend 서버 접속 주소
 
 ```txt
 http://localhost:8080
 ```
 
-### 4. H2 Console 접속
+#### 4. H2 Console 접속
 
 ```txt
 http://localhost:8080/h2-console
@@ -253,27 +252,27 @@ Password:
 
 ---
 
-## 9.2 Frontend 실행
+### 9.2 Frontend 실행
 
-### 1. Frontend 폴더로 이동
+#### 1. Frontend 폴더로 이동
 
 ```bash
 cd frontend
 ```
 
-### 2. 패키지 설치
+#### 2. 패키지 설치
 
 ```bash
 npm install
 ```
 
-### 3. 개발 서버 실행
+#### 3. 개발 서버 실행
 
 ```bash
 npm run dev
 ```
 
-### 4. Frontend 접속 주소
+#### 4. Frontend 접속 주소
 
 ```txt
 http://localhost:5173
@@ -283,39 +282,39 @@ http://localhost:5173
 
 ## 10. 시연 테스트 시나리오
 
-## 10.1 도서 CRUD 테스트
+### 10.1 도서 CRUD 테스트
 
-| 순서 | 테스트 항목    | 확인 내용                                       |
+| 순서 | 테스트 항목 | 확인 내용 |
 | -: | --------- | ------------------------------------------- |
-|  1 | 도서 목록 조회  | 메인 화면에서 등록된 도서 목록이 표시되는지 확인                 |
-|  2 | 도서 등록     | 제목, 작가명, 본문 입력 후 새 도서가 목록에 추가되는지 확인         |
-|  3 | 도서 상세 조회  | 선택한 도서의 제목, 작가명, 본문, 표지, 작성일, 수정일이 표시되는지 확인 |
-|  4 | 도서 수정     | 수정한 도서 정보가 상세 화면과 목록 화면에 반영되는지 확인           |
-|  5 | 도서 좋아요 증가 | 좋아요 버튼 클릭 시 좋아요 수가 증가하는지 확인                 |
-|  6 | 도서 삭제     | 삭제 후 목록에서 해당 도서가 제거되는지 확인                   |
+| 1 | 도서 목록 조회 | 메인 화면에서 등록된 도서 목록이 표시되는지 확인 |
+| 2 | 도서 등록 | 제목, 작가명, 본문 입력 후 새 도서가 목록에 추가되는지 확인 |
+| 3 | 도서 상세 조회 | 선택한 도서의 제목, 작가명, 본문, 표지, 작성일, 수정일이 표시되는지 확인 |
+| 4 | 도서 수정 | 수정한 도서 정보가 상세 화면과 목록 화면에 반영되는지 확인 |
+| 5 | 도서 좋아요 증가 | 좋아요 버튼 클릭 시 좋아요 수가 증가하는지 확인 |
+| 6 | 도서 삭제 | 삭제 후 목록에서 해당 도서가 제거되는지 확인 |
 
 ---
 
-## 10.2 리뷰 CRUD 테스트
+### 10.2 리뷰 CRUD 테스트
 
-| 순서 | 테스트 항목 | 확인 내용                                |
+| 순서 | 테스트 항목 | 확인 내용 |
 | -: | ------ | ------------------------------------ |
-|  1 | 리뷰 등록  | 닉네임과 리뷰 내용을 입력하면 리뷰가 등록되는지 확인        |
-|  2 | 리뷰 조회  | 특정 도서 상세 화면에서 해당 도서의 리뷰 목록이 조회되는지 확인 |
-|  3 | 리뷰 수정  | 수정한 리뷰 내용이 화면에 반영되는지 확인              |
-|  4 | 리뷰 삭제  | 삭제 후 리뷰 목록에서 해당 리뷰가 제거되는지 확인         |
+| 1 | 리뷰 등록 | 닉네임과 리뷰 내용을 입력하면 리뷰가 등록되는지 확인 |
+| 2 | 리뷰 조회 | 특정 도서 상세 화면에서 해당 도서의 리뷰 목록이 조회되는지 확인 |
+| 3 | 리뷰 수정 | 수정한 리뷰 내용이 화면에 반영되는지 확인 |
+| 4 | 리뷰 삭제 | 삭제 후 리뷰 목록에서 해당 리뷰가 제거되는지 확인 |
 
 ---
 
-## 10.3 AI 표지 생성 테스트
+### 10.3 AI 표지 생성 테스트
 
-| 순서 | 테스트 항목            | 확인 내용                                   |
+| 순서 | 테스트 항목 | 확인 내용 |
 | -: | ----------------- | --------------------------------------- |
-|  1 | OpenAI API Key 입력 | 사용자의 OpenAI API Key를 입력한다               |
-|  2 | 표지 생성 요청          | 도서 제목과 내용을 기반으로 이미지 생성 요청을 보낸다          |
-|  3 | 이미지 응답 처리         | OpenAI 응답의 `b64_json` 값을 Data URL로 변환한다 |
-|  4 | 표지 저장             | 변환된 Data URL을 Backend에 저장한다             |
-|  5 | 화면 반영             | 생성된 표지가 도서 상세 화면과 목록 화면에 표시되는지 확인한다     |
+| 1 | OpenAI API Key 입력 | 사용자의 OpenAI API Key를 입력한다 |
+| 2 | 표지 생성 요청 | 도서 제목과 내용을 기반으로 이미지 생성 요청을 보낸다 |
+| 3 | 이미지 응답 처리 | OpenAI 응답의 `b64_json` 값을 Data URL로 변환한다 |
+| 4 | 표지 저장 | 변환된 Data URL을 Backend에 저장한다 |
+| 5 | 화면 반영 | 생성된 표지가 도서 상세 화면과 목록 화면에 표시되는지 확인한다 |
 
 ---
 
@@ -323,25 +322,25 @@ http://localhost:5173
 
 ### 11.1 Books API
 
-| 기능        | Method | URL                                      | 주요 Body                                       |
+| 기능 | Method | URL | 주요 Body |
 | --------- | ------ | ---------------------------------------- | --------------------------------------------- |
-| 도서 등록     | POST   | `http://localhost:8080/books`            | `title`, `author`, `content`, `coverImageUrl` |
-| 도서 목록 조회  | GET    | `http://localhost:8080/books`            | 없음                                            |
-| 도서 상세 조회  | GET    | `http://localhost:8080/books/{id}`       | 없음                                            |
-| 도서 수정     | PATCH  | `http://localhost:8080/books/{id}`       | 수정할 필드                                        |
-| AI 표지 저장  | PATCH  | `http://localhost:8080/books/{id}/cover` | `coverImageUrl`                               |
-| 도서 좋아요 증가 | PATCH  | `http://localhost:8080/books/{id}/like`  | 없음                                            |
-| 도서 삭제     | DELETE | `http://localhost:8080/books/{id}`       | 없음                                            |
+| 도서 등록 | POST | `http://localhost:8080/books` | `title`, `author`, `content`, `coverImageUrl` |
+| 도서 목록 조회 | GET | `http://localhost:8080/books` | 없음 |
+| 도서 상세 조회 | GET | `http://localhost:8080/books/{id}` | 없음 |
+| 도서 수정 | PATCH | `http://localhost:8080/books/{id}` | 수정할 필드 |
+| AI 표지 저장 | PATCH | `http://localhost:8080/books/{id}/cover` | `coverImageUrl` |
+| 도서 좋아요 증가 | PATCH | `http://localhost:8080/books/{id}/like` | 없음 |
+| 도서 삭제 | DELETE | `http://localhost:8080/books/{id}` | 없음 |
 
 ### 11.2 Reviews API
 
-| 기능          | Method | URL                                             | 주요 Body                         |
+| 기능 | Method | URL | 주요 Body |
 | ----------- | ------ | ----------------------------------------------- | ------------------------------- |
-| 리뷰 등록       | POST   | `http://localhost:8080/reviews`                 | `bookId`, `nickname`, `content` |
-| 전체 리뷰 조회    | GET    | `http://localhost:8080/reviews`                 | 없음                              |
-| 특정 도서 리뷰 조회 | GET    | `http://localhost:8080/reviews?bookId={bookId}` | 없음                              |
-| 리뷰 수정       | PATCH  | `http://localhost:8080/reviews/{id}`            | 수정할 필드                          |
-| 리뷰 삭제       | DELETE | `http://localhost:8080/reviews/{id}`            | 없음                              |
+| 리뷰 등록 | POST | `http://localhost:8080/reviews` | `bookId`, `nickname`, `content` |
+| 전체 리뷰 조회 | GET | `http://localhost:8080/reviews` | 없음 |
+| 특정 도서 리뷰 조회 | GET | `http://localhost:8080/reviews?bookId={bookId}` | 없음 |
+| 리뷰 수정 | PATCH | `http://localhost:8080/reviews/{id}` | 수정할 필드 |
+| 리뷰 삭제 | DELETE | `http://localhost:8080/reviews/{id}` | 없음 |
 
 ---
 
@@ -377,16 +376,16 @@ http://localhost:5173
 
 ## 13. 트러블슈팅
 
-| 문제 상황                                   | 원인                                               | 해결 방법                                                |
+| 문제 상황 | 원인 | 해결 방법 |
 | --------------------------------------- | ------------------------------------------------ | ---------------------------------------------------- |
-| React에서 Spring Boot API 호출 시 CORS 오류 발생 | Frontend와 Backend의 포트가 달라 브라우저 보안 정책에 의해 요청 차단   | `WebConfig.java`에서 `http://localhost:5173` Origin 허용 |
-| Frontend 요청이 json-server로 전송됨           | 기존 Frontend 코드의 API 주소가 `localhost:3000`으로 남아 있음 | API 요청 주소를 `http://localhost:8080`으로 수정              |
-| H2 Console 접속 실패                        | JDBC URL 또는 서버 실행 상태 문제                          | Spring Boot 실행 여부 확인 후 H2 접속 정보 확인                   |
-| 도서 상세 조회 시 404 발생                       | 존재하지 않는 도서 ID 요청                                 | 사용자 정의 예외와 전역 예외 처리로 404 응답 반환                       |
-| 필수 입력값 없이 등록 시 오류 발생                    | 제목, 작가명, 본문 내용 등 필수값 누락                          | 검증 어노테이션과 전역 예외 처리로 400 응답 반환                        |
-| OpenAI 이미지 생성 실패                        | API Key 미입력 또는 잘못된 Key 사용                        | 사용자의 OpenAI API Key를 입력하고 Authorization 헤더 형식 확인     |
-| GitHub에 API Key가 올라갈 위험                 | API Key를 코드에 하드코딩할 경우 보안 문제 발생                   | API Key는 사용자가 화면에서 직접 입력하고 코드에는 저장하지 않음              |
-| 표지 이미지가 화면에 바로 반영되지 않음                  | Backend 저장 후 Frontend 상태 갱신 누락                   | 표지 저장 API 호출 후 도서 상세 정보를 다시 조회하거나 상태값 갱신             |
+| React에서 Spring Boot API 호출 시 CORS 오류 발생 | Frontend와 Backend의 포트가 달라 브라우저 보안 정책에 의해 요청 차단 | `WebConfig.java`에서 `http://localhost:5173` Origin 허용 |
+| Frontend 요청이 json-server로 전송됨 | 기존 Frontend 코드의 API 주소가 `localhost:3000`으로 남아 있음 | API 요청 주소를 `http://localhost:8080`으로 수정 |
+| H2 Console 접속 실패 | JDBC URL 또는 서버 실행 상태 문제 | Spring Boot 실행 여부 확인 후 H2 접속 정보 확인 |
+| 도서 상세 조회 시 404 발생 | 존재하지 않는 도서 ID 요청 | 사용자 정의 예외와 전역 예외 처리로 404 응답 반환 |
+| 필수 입력값 없이 등록 시 오류 발생 | 제목, 작가명, 본문 내용 등 필수값 누락 | 검증 어노테이션과 전역 예외 처리로 400 응답 반환 |
+| OpenAI 이미지 생성 실패 | API Key 미입력 또는 잘못된 Key 사용 | 사용자의 OpenAI API Key를 입력하고 Authorization 헤더 형식 확인 |
+| GitHub에 API Key가 올라갈 위험 | API Key를 코드에 하드코딩할 경우 보안 문제 발생 | API Key는 사용자가 화면에서 직접 입력하고 코드에는 저장하지 않음 |
+| 표지 이미지가 화면에 바로 반영되지 않음 | Backend 저장 후 Frontend 상태 갱신 누락 | 표지 저장 API 호출 후 도서 상세 정보를 다시 조회하거나 상태값 갱신 |
 
 ---
 
@@ -421,8 +420,11 @@ Frontend에서 OpenAI API를 직접 호출하여 도서 내용에 맞는 표지 
 React Frontend와 Spring Boot Backend를 연동하여 도서 등록, 조회, 수정, 삭제, 좋아요 증가, 리뷰 관리, AI 표지 저장 흐름을 통합하였다. CORS 설정을 통해 `localhost:5173`에서 `localhost:8080`으로 API 요청이 가능하도록 처리하였다.
 
 ---
+
 ## 15. Postman 및 H2 테스트
+
 ### CRUD
+
 1. 생성
 ![도서 등록](./screenshots/Postman도서등록.png)
 
@@ -437,6 +439,7 @@ React Frontend와 Spring Boot Backend를 연동하여 도서 등록, 조회, 수
 ![도서 삭제 확인](./screenshots/Postman도서삭제확인.png)
 
 ### ERROR 확인
+
 1. 404
 ![도서404](./screenshots/Postman도서404에러.png)
 
