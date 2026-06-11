@@ -458,10 +458,10 @@ React Frontend와 Spring Boot Backend를 연동하여 도서 등록, 조회, 수
 ![도서 등록 예시](./screenshots/도서등록예시.png)
 
 3. 등록된 도서 목록 확인
-![등록된 도서 목록 확인](./screenshots/등록된도서목록확인.png)
+
 
 4. 도서 상세 페이지 이동
-![도서 상세 페이지 이동](./screenshots/도서상세페이지이동.png)
+
 
 5. OpenAI API Key 입력
 
