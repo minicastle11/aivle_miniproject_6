@@ -36,6 +36,7 @@ public class SecurityConfig {
                 .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/books/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/reviews/**").permitAll()
+                .requestMatchers(HttpMethod.PATCH, "/books/*/likes").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

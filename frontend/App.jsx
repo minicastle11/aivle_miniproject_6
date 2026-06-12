@@ -66,29 +66,66 @@ function App() {
       return savedBook;
   };
 
-  const handleReviewLike = async (id) => {
-    const review = reviews.find(r => r.id === id);
-    const res = await fetch(`http://localhost:8080/reviews/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ likes: review.likes + 1 }),
-    });
-    const updated = await res.json();
-    setReviews(reviews.map((r) => (r.id === id ? updated : r)));
-  };
-
   const handleBookLikes = async (id) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+
+    const likedBooks = JSON.parse(localStorage.getItem('likedBooks') || '[]');
+    const already = likedBooks.includes(String(id));
+
     try {
+      const book = books.find(b => String(b.id) === String(id));
       const res = await fetch(`http://localhost:8080/books/${id}/likes`, {
         method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({ likes: already ? book.likes - 1 : book.likes + 1 }),
       });
       if (!res.ok) throw new Error('좋아요 실패');
       const updatedBook = await res.json();
       setBooks((prevBooks) =>
         prevBooks.map((b) => String(b.id) === String(id) ? updatedBook : b)
       );
+      if (already) {
+        localStorage.setItem('likedBooks', JSON.stringify(likedBooks.filter(i => i !== String(id))));
+      } else {
+        localStorage.setItem('likedBooks', JSON.stringify([...likedBooks, String(id)]));
+      }
     } catch (err) {
       console.error(err);
+    }
+  };
+    
+  const handleReviewLike = async (id) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+
+    const likedReviews = JSON.parse(localStorage.getItem('likedReviews') || '[]');
+    const already = likedReviews.includes(String(id));
+
+    const review = reviews.find(r => r.id === id);
+    const res = await fetch(`http://localhost:8080/reviews/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({ likes: already ? review.likes - 1 : review.likes + 1 }),
+    });
+    const updated = await res.json();
+    setReviews(reviews.map((r) => (r.id === id ? updated : r)));
+    if (already) {
+      localStorage.setItem('likedReviews', JSON.stringify(likedReviews.filter(i => i !== String(id))));
+    } else {
+      localStorage.setItem('likedReviews', JSON.stringify([...likedReviews, String(id)]));
     }
   };
 

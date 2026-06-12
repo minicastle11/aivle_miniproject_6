@@ -62,9 +62,13 @@ public class BookService {
     }
 
     @Transactional
-    public Book likeBook(Long id) {
+    public Book likeBook(Long id, Integer likes) {
         Book book = getBook(id);
-        book.setLikes(book.getLikes() + 1);
+        if (likes != null) {
+            book.setLikes(likes);
+        } else {
+            book.setLikes(book.getLikes() + 1);
+        }
         return bookRepository.save(book);
     }
  
