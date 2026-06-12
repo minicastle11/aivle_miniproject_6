@@ -55,13 +55,6 @@ public class ReviewService {
         return reviewRepository.findByCreatedBy(username);
     }
 
-    @Transactional
-    public Review likeReview(Long id) {
-        Review review = getReview(id);
-        review.setLikes(review.getLikes() + 1);
-        return reviewRepository.save(review);
-    }
-
     private Review getReview(Long id) {
         return reviewRepository.findById(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));
@@ -72,5 +65,16 @@ public class ReviewService {
         if (!review.getCreatedBy().equals(username)) {
             throw new AccessDeniedException("권한이 없습니다.");
         }
+    }
+
+    @Transactional
+    public Review likeReview(Long id, Integer likes) {
+        Review review = getReview(id);
+        if (likes != null) {
+            review.setLikes(likes);
+        } else {
+            review.setLikes(review.getLikes() + 1);
+        }
+        return reviewRepository.save(review);
     }
 }

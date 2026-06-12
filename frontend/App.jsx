@@ -112,7 +112,7 @@ function App() {
     const already = likedReviews.includes(String(id));
 
     const review = reviews.find(r => r.id === id);
-    const res = await fetch(`http://localhost:8080/reviews/${id}`, {
+    const res = await fetch(`http://localhost:8080/reviews/${id}/likes`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
