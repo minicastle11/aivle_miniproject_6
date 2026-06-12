@@ -112,7 +112,7 @@ function App() {
     const already = likedReviews.includes(String(id));
 
     const review = reviews.find(r => r.id === id);
-    const res = await fetch(`http://localhost:8080/reviews/${id}`, {
+    const res = await fetch(`http://localhost:8080/reviews/${id}/likes`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -131,9 +131,13 @@ function App() {
 
   const handleReviewEdit = async (id, edited) => {
     try {
+      const token = localStorage.getItem('token');
       const res = await fetch(`http://localhost:8080/reviews/${id}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
         body: JSON.stringify(edited),
       });
       const updated = await res.json();
@@ -177,7 +181,11 @@ function App() {
 
   const handleReviewDelete = async (id) => {
     try {
-      await fetch(`http://localhost:8080/reviews/${id}`, { method: 'DELETE' });
+      const token = localStorage.getItem('token');
+      await fetch(`http://localhost:8080/reviews/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` },
+      });
       setReviews(reviews.filter(r => r.id !== id));
     } catch (err) {
       console.error(err);

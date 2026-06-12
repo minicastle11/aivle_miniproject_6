@@ -37,8 +37,8 @@ public class ReviewController {
     }
 
     @PatchMapping("/{id}/likes")
-    public Review likeReview(@PathVariable Long id) {
-        return reviewService.likeReview(id);
+    public Review likeReview(@PathVariable Long id, @RequestBody(required = false) Review body) {
+        return reviewService.likeReview(id, body != null ? body.getLikes() : null);
     }
 
     @DeleteMapping("/{id}")

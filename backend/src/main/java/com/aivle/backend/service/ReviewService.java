@@ -56,9 +56,13 @@ public class ReviewService {
     }
 
     @Transactional
-    public Review likeReview(Long id) {
+    public Review likeReview(Long id, Integer likes) {
         Review review = getReview(id);
-        review.setLikes(review.getLikes() + 1);
+        if (likes != null) {
+            review.setLikes(likes);
+        } else {
+            review.setLikes(review.getLikes() + 1);
+        }
         return reviewRepository.save(review);
     }
 
