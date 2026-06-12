@@ -55,6 +55,13 @@ public class ReviewService {
         return reviewRepository.findByCreatedBy(username);
     }
 
+    @Transactional
+    public Review likeReview(Long id) {
+        Review review = getReview(id);
+        review.setLikes(review.getLikes() + 1);
+        return reviewRepository.save(review);
+    }
+
     private Review getReview(Long id) {
         return reviewRepository.findById(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));

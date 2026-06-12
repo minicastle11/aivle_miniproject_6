@@ -36,6 +36,11 @@ public class ReviewController {
         return reviewService.updateReview(id, request, principal.getName());
     }
 
+    @PatchMapping("/{id}/likes")
+    public Review likeReview(@PathVariable Long id) {
+        return reviewService.likeReview(id);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteReview(@PathVariable Long id, Principal principal) {
         reviewService.deleteReview(id, principal.getName());

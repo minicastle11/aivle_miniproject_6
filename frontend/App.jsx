@@ -67,20 +67,26 @@ function App() {
   };
 
   const handleReviewLike = async (id) => {
-    const review = reviews.find(r => r.id === id);
-    const res = await fetch(`http://localhost:8080/reviews/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ likes: review.likes + 1 }),
-    });
-    const updated = await res.json();
-    setReviews(reviews.map((r) => (r.id === id ? updated : r)));
+    const token = localStorage.getItem('token');
+    try {
+      const res = await fetch(`http://localhost:8080/reviews/${id}/likes`, {
+        method: 'PATCH',
+        headers: { 'Authorization': `Bearer ${token}` },
+      });
+      if (!res.ok) throw new Error('좋아요 실패');
+      const updated = await res.json();
+      setReviews(reviews.map((r) => (r.id === id ? updated : r)));
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleBookLikes = async (id) => {
     try {
+      const token = localStorage.getItem('token');
       const res = await fetch(`http://localhost:8080/books/${id}/likes`, {
         method: 'PATCH',
+        headers: { 'Authorization': `Bearer ${token}` },
       });
       if (!res.ok) throw new Error('좋아요 실패');
       const updatedBook = await res.json();
