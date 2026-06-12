@@ -51,15 +51,18 @@ function App() {
   }, [books]);
 
   const handleCreateBook = async (newBook) => {
-    const res = await fetch('http://localhost:8080/books', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newBook),
-    });
-    console.log(newBook);
-    const savedBook = await res.json();
-    setBooks([savedBook, ...books]);
-    return savedBook;
+      const token = localStorage.getItem('token');
+      const res = await fetch('http://localhost:8080/books', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(newBook),
+      });
+      const savedBook = await res.json();
+      setBooks([savedBook, ...books]);
+      return savedBook;
   };
 
   const handleReviewLike = async (id) => {
@@ -104,26 +107,34 @@ function App() {
   };
 
   const handleBookEdit = async (id, edited) => {
-    try {
-      const res = await fetch(`http://localhost:8080/books/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(edited),
-      });
-      const updated = await res.json();
-      setBooks(books.map(b => String(b.id) === String(id) ? updated : b));
-    } catch (err) {
-      console.error(err);
-    }
+      try {
+          const token = localStorage.getItem('token');
+          const res = await fetch(`http://localhost:8080/books/${id}`, {
+              method: 'PATCH',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify(edited),
+          });
+          const updated = await res.json();
+          setBooks(books.map(b => String(b.id) === String(id) ? updated : b));
+      } catch (err) {
+          console.error(err);
+      }
   };
 
   const handleBookDelete = async (id) => {
-    try {
-      await fetch(`http://localhost:8080/books/${id}`, { method: 'DELETE' });
-      setBooks(books.filter(b => String(b.id) !== String(id)));
-    } catch (err) {
-      console.error(err);
-    }
+      try {
+          const token = localStorage.getItem('token');
+          await fetch(`http://localhost:8080/books/${id}`, {
+              method: 'DELETE',
+              headers: { 'Authorization': `Bearer ${token}` }
+          });
+          setBooks(books.filter(b => String(b.id) !== String(id)));
+      } catch (err) {
+          console.error(err);
+      }
   };
 
   const handleReviewDelete = async (id) => {

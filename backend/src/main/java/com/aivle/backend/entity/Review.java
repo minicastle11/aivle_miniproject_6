@@ -53,4 +53,6 @@ public class Review {
     public void preUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
+    @Column
+    private String createdBy;
 }

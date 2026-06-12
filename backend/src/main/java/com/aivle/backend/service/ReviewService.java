@@ -4,7 +4,9 @@ import com.aivle.backend.entity.Review;
 import com.aivle.backend.exception.ReviewNotFoundException;
 import com.aivle.backend.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,57 +21,45 @@ public class ReviewService {
         if (bookId != null) {
             return reviewRepository.findByBookId(bookId);
         }
-
         return reviewRepository.findAll();
     }
 
-    public Review createReview(Review review) {
-        if (review.getLikes() == null) {
-            review.setLikes(0);
-        }
-
+    public Review createReview(Review review, String username) {
+        if (review.getLikes() == null) review.setLikes(0);
         LocalDateTime now = LocalDateTime.now();
-
-        if (review.getCreatedAt() == null) {
-            review.setCreatedAt(now);
-        }
-
+        if (review.getCreatedAt() == null) review.setCreatedAt(now);
         review.setUpdatedAt(now);
-
+        if (username != null) review.setCreatedBy(username);  // ← null 체크 추가
         return reviewRepository.save(review);
     }
 
-    public Review updateReview(Long id, Review request) {
+    @Transactional
+    public Review updateReview(Long id, Review request, String username) {
         Review review = getReview(id);
-
-        if (request.getBookId() != null) {
-            review.setBookId(request.getBookId());
-        }
-
-        if (request.getNickname() != null) {
-            review.setNickname(request.getNickname());
-        }
-
-        if (request.getContent() != null) {
-            review.setContent(request.getContent());
-        }
-
-        if (request.getLikes() != null) {
-            review.setLikes(request.getLikes());
-        }
-
+        checkOwner(review, username);
+        if (request.getContent() != null) review.setContent(request.getContent());
+        if (request.getNickname() != null) review.setNickname(request.getNickname());
+        if (request.getLikes() != null) review.setLikes(request.getLikes());
         review.setUpdatedAt(LocalDateTime.now());
-
         return reviewRepository.save(review);
     }
 
-    public void deleteReview(Long id) {
+    @Transactional
+    public void deleteReview(Long id, String username) {
         Review review = getReview(id);
+        checkOwner(review, username);
         reviewRepository.delete(review);
     }
 
     private Review getReview(Long id) {
         return reviewRepository.findById(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));
+    }
+
+    private void checkOwner(Review review, String username) {
+        if (review.getCreatedBy() == null) return;
+        if (!review.getCreatedBy().equals(username)) {
+            throw new AccessDeniedException("권한이 없습니다.");
+        }
     }
 }

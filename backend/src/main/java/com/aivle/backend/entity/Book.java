@@ -17,8 +17,6 @@ public class Book {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    private Long userId;          // 나중에 fk지정
-
     @NotBlank
     @Column(nullable = false)
     private String title;
@@ -34,14 +32,14 @@ public class Book {
     @Lob @Column(columnDefinition = "TEXT")
     private String coverImageUrl;
 
-    // @ElementCollection(fetch = FetchType.EAGER)
-    // private List<String> tags;     // 프론트 태그 필터용 (json-server 호환)
-
     private Integer likes;
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    @Column
+    private String createdBy;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> tags = new ArrayList<>();

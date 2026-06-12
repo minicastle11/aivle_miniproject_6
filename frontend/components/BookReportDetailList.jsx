@@ -5,6 +5,7 @@ import ReviewItem from './BookReportDetailItem'
 function BookReportDetailList({ book, review,  onCreate, onReviewLike, onReviewEdit, onReviewDelete }) {
   const [nickname, setNickname] = useState("");
   const [content, setContent] = useState("");
+  const currentUser = localStorage.getItem('username');
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -73,7 +74,9 @@ function BookReportDetailList({ book, review,  onCreate, onReviewLike, onReviewE
         bookTitle={book.title}
         onLike={onReviewLike}
         onEdit={onReviewEdit}
-        onDelete={onReviewDelete}/> 
+        onDelete={onReviewDelete}
+        currentUser={currentUser}
+      /> 
       )}
     </ul>
     </article>

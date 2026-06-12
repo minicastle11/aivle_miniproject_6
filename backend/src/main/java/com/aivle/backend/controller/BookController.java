@@ -5,8 +5,10 @@ import com.aivle.backend.service.BookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -27,13 +29,13 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
-        return ResponseEntity.status(201).body(bookService.createBook(book));
+    public ResponseEntity<Book> createBook(@Valid @RequestBody Book book, Principal principal) {
+        return ResponseEntity.status(201).body(bookService.createBook(book, principal.getName()));
     }
 
     @PatchMapping("/{id}")
-    public Book updateBook(@PathVariable Long id, @RequestBody Book book) {
-        return bookService.updateBook(id, book);
+    public Book updateBook(@PathVariable Long id, @RequestBody Book book, Principal principal) {
+        return bookService.updateBook(id, book, principal.getName());
     }
 
     @PatchMapping("/{id}/likes")
@@ -47,8 +49,8 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
-        bookService.deleteBook(id);
+    public ResponseEntity<Void> deleteBook(@PathVariable Long id, Principal principal) {
+        bookService.deleteBook(id, principal.getName());
         return ResponseEntity.noContent().build();
     }
 }

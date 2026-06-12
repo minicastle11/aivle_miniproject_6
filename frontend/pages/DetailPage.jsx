@@ -17,10 +17,11 @@ function DetailPage({
 }) {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const book = books.find(
     b => String(b.id) === String(id)
   );
+  const currentUser = localStorage.getItem('username');
+  const isOwner = book.createdBy === currentUser;
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -127,25 +128,20 @@ function DetailPage({
           </div>
 
           <div className="detail-action">
-            <button
-              onClick={() => {
-                onBookLikes(id);
-              }}
-            >
-              ❤️ {book.likes}
-            </button>
+              <button onClick={() => onBookLikes(id)}>
+                  ❤️ {book.likes}
+              </button>
 
-            <button
-              onClick={() => setIsEditing(true)}
-            >
-              수정하기
-            </button>
-
-            <button
-              onClick={handleBookDelete}
-            >
-              삭제하기
-            </button>
+              {isOwner && (
+                  <>
+                      <button onClick={() => setIsEditing(true)}>
+                          수정하기
+                      </button>
+                      <button onClick={handleBookDelete}>
+                          삭제하기
+                      </button>
+                  </>
+              )}
           </div>
         </div>
       </div>
