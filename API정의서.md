@@ -59,7 +59,7 @@ GET /books
 
 ### 설명
 
-전체 도서 목록을 조회한다.
+전체 도서 목록을 조회한다
 
 ### Query Parameter
 
