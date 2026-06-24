@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 
 import HomePage from './pages/HomePage';
@@ -14,6 +14,9 @@ import AdminPage from './pages/AdminPage';
 import { request } from './components/api.js';
 
 function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [books, setBooks] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +32,11 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.removeItem('role');
     setCurrentUser(null);
+      if (location.pathname === '/admin' || location.pathname === '/mypage') {
+      navigate('/');
+    }
   };
 
   useEffect(() => {
@@ -184,7 +191,7 @@ function App() {
         </Link>
 
         <nav aria-label="주요 메뉴">
-          {localStorage.getItem('role') === 'ADMIN' && (
+          {currentUser && localStorage.getItem('role') === 'ADMIN' && (
             <Link to="/admin">관리자</Link>
           )}
           <Link to="/">홈</Link>
