@@ -42,12 +42,10 @@ function App() {
   useEffect(() => {
     async function loadData() {
       try {
-        const booksRes = await fetch('http://localhost:8080/books');
-        const reviewsRes = await fetch('http://localhost:8080/reviews');
-        const res1 = await booksRes.json();
-        setBooks(res1);
-        const res2 = await reviewsRes.json();
-        setReviews(res2);
+        const booksRes = await request('/books');
+        const reviewsRes = await request('/reviews');
+        setBooks(booksRes);
+        setReviews(reviewsRes);
       } catch (err) {
         console.error('데이터 불러오기 실패:', err);
       }
@@ -69,6 +67,17 @@ function App() {
       return savedBook;
   };
 
+  const handleView = async (id) => {
+    try {
+      const updated = await request(`/books/${id}/views`, {
+        method: 'PATCH',
+      });
+      setBooks((prevBooks) => prevBooks.map((book) => String(book.id) === String(id) ? updated : book));
+    } catch (err) {
+      console.error('handleView Error:', err);
+    }
+  };
+
   const handleBookLikes = async (id) => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -81,16 +90,10 @@ function App() {
 
     try {
       const book = books.find(b => String(b.id) === String(id));
-      const res = await fetch(`http://localhost:8080/books/${id}/likes`, {
+      const updatedBook = await request(`/books/${id}/likes`, {
         method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
         body: JSON.stringify({ likes: already ? book.likes - 1 : book.likes + 1 }),
       });
-      if (!res.ok) throw new Error('좋아요 실패');
-      const updatedBook = await res.json();
       setBooks((prevBooks) =>
         prevBooks.map((b) => String(b.id) === String(id) ? updatedBook : b)
       );
@@ -228,6 +231,7 @@ function App() {
               onReviewEdit={handleReviewEdit}
               onReviewDelete={handleReviewDelete}
               onReviewAdd={handleReviewAdd}
+              onView={handleView}
             />}
           />
           <Route path="/reviews" element={<ReviewListPage reviews={reviews} books={books} />} />
