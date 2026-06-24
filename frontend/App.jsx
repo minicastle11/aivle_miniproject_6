@@ -176,12 +176,14 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="app-shell">
       <header className="header">
-        <div className="logo">
-          <h1 className="logo">📚 도서관리</h1>
-        </div>
-        <nav>
+        <Link to="/" className="logo" aria-label="홈으로 이동">
+          <span className="logo-icon">📚</span>
+          <h1>도서관리</h1>
+        </Link>
+
+        <nav aria-label="주요 메뉴">
           {localStorage.getItem('role') === 'ADMIN' && (
             <Link to="/admin">관리자</Link>
           )}
@@ -228,6 +230,34 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </main>
+
+      <footer className="footer">
+        <div className="footer-inner">
+          <div className="footer-brand">
+            <span className="footer-logo">📚</span>
+            <div>
+              <strong>도서관리</strong>
+              <p>AI 표지 생성과 리뷰 기능을 제공하는 도서 관리 서비스입니다.</p>
+            </div>
+          </div>
+
+          <div className="footer-info">
+            <div className="footer-info-item">
+              <span className="footer-info-title">서비스 이용</span>
+              <p>도서 등록, 리뷰 작성, 좋아요 기능은 로그인 후 이용할 수 있습니다.</p>
+            </div>
+
+            <div className="footer-info-item">
+              <span className="footer-info-title">프로젝트 정보</span>
+              <p>AIVLE Mini Project 6 · React & Spring Boot 기반 도서관리 시스템</p>
+            </div>
+          </div>
+
+          <div className="footer-copy">
+            © 2026 AIVLE Mini Project 6. All rights reserved.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
